@@ -11,93 +11,75 @@ public class MathTest {
     Math math;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         math = new Math();
         System.out.println("Before");
     }
 
     @Test
     public void simpleAddCase(){
-        assertEquals("4",math.add("2","2"));
-        assertEquals("0",math.sub("2","2"));
-        assertEquals("1",math.div("2","2"));
-        assertEquals("4",math.mult("2","2"));
+        assertEquals("4", math.add("2", "2"));
+        assertEquals("0", math.sub("2", "2"));
+        assertEquals("4", math.mult("2", "2"));
+        assertEquals("1", math.div("2", "2"));
         System.out.println("simpleAddCase");
     }
 
     @Test
-    public void emptyFieldsCase(){
-        assertEquals("Empty Field",math.add("",""));
-        assertEquals("Empty Field",math.div("",""));
-        assertEquals("Empty Field",math.sub("",""));
-        assertEquals("Empty Field",math.mult("",""));
-        System.out.println("emptyFieldsCase");
-    }
-    @Test
-    public void emptyFieldCase(){
-        assertEquals("2",math.add("2",""));
-        assertEquals("/ by Zero",math.div("2",""));
-        assertEquals("2",math.sub("2",""));
-        assertEquals("0",math.mult("2",""));
+    public void emptyFieldCase() {
+        assertEquals("0", math.add("", ""));
+        assertEquals("0", math.sub("", ""));
+        assertEquals("0", math.mult("", ""));
+        assertEquals("0", math.div("", ""));
         System.out.println("emptyFieldCase");
     }
 
     @Test
-    public void withSpacesCase(){
-        assertEquals("6",math.add("    2    ","     4     "));
-        assertEquals("2",math.div("    8    ","     4     "));
-        assertEquals("-2",math.sub("    2    ","     4     "));
-        assertEquals("40",math.mult("    10    ","     4     "));
-        System.out.println("addWithSpacesCase");
+    public void wordsFieldCase() {
+        assertEquals("Нужно вводить тоьлко числа", math.add("a", "b"));
+        assertEquals("Нужно вводить тоьлко числа", math.sub("a", "b"));
+        assertEquals("Нужно вводить тоьлко числа", math.mult("a", "b"));
+        assertEquals("Нужно вводить тоьлко числа", math.div("a", "b"));
+        System.out.println("wordsFieldCase");
     }
 
     @Test
-    public void lattersCase(){
-        assertEquals("wrong format",math.add("add","Add"));
-        assertEquals("wrong format",math.div("div","Div"));
-        assertEquals("wrong format",math.sub("sub","Sub"));
-        assertEquals("wrong format",math.mult("mult","Mult"));
-        System.out.println("addWithSpacesCase");
+    public void spaceFieldCase() {
+        assertEquals("10", math.add(" 5 ", " 5 "));
+        assertEquals("0", math.sub(" 5 ", " 5 "));
+        assertEquals("25", math.mult(" 5 ", " 5 "));
+        assertEquals("1", math.div(" 5 ", " 5 "));
+        System.out.println("spaceFieldCase");
     }
 
     @Test
-    public void simpleDivCase(){
-        assertEquals("1",math.div("2","2"));
-        System.out.println("simpleDivCase");
+    public void divideByZero() {
+        assertEquals("Нельзя делить на ноль", math.div("3", "0"));
+        System.out.println("divideByZero");
+    }
+
+
+    @Test
+    public void simpleTwoWordsReverse() {
+        assertEquals("World Hello", math.reverseString("Hello World"));
+        System.out.println("simpleTwoWordsReverse");
     }
 
     @Test
-    public void divByZero(){
-        assertEquals("0",math.div("2","0"));
-        System.out.println("divByZero");
+    public void simpleThreeAndMoreWordsReverse() {
+        assertEquals("Four Three Two One", math.reverseString("One Two Three Four"));
+        System.out.println("simpleTwoWordsReverse");
     }
 
     @Test
-    public void twoReversedWordsCase(){
-        assertEquals("World Hello",math.reverseWords("Hello World"));
-        System.out.println("twoReversedWordsCase");
+    public void spaceWordsReverse() {
+        assertEquals("Four Three Two One", math.reverseString("  One Two Three Four  "));
+        System.out.println("spaceWordsReverse");
     }
 
-    @Test
-    public void threeOrMoreReversedWordsCase(){
-        assertEquals("Four Three Two One",math.reverseWords("One Two Three Four"));
-        System.out.println("twoReversedWordsCase");
-    }
-
-    @Test
-    public void spacedReversedWordsCase(){
-        assertEquals("Two One",math.reverseWords("    One Two    "));
-        System.out.println("twoReversedWordsCase");
-    }
-
-    @Test
-    public void commaReversedWordsCase(){
-        assertEquals("Two One",math.reverseWords("One,Two"));
-        System.out.println("twoReversedWordsCase");
-    }
 
     @After
-    public void tearDown(){
+    public void tearDown() {
         math = null;
         System.out.println("After");
     }
