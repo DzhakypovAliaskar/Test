@@ -19,6 +19,9 @@ public class MathTest {
     @Test
     public void simpleAddCase(){
         assertEquals("4",math.add("2","2"));
+        assertEquals("0",math.sub("2","2"));
+        assertEquals("1",math.div("2","2"));
+        assertEquals("4",math.mult("2","2"));
         System.out.println("simpleAddCase");
     }
 
